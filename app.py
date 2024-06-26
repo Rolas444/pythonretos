@@ -34,6 +34,13 @@ def create_app():
             app.db.usuarios.insert_one(parameters)
             # print(usuarios)
         return render_template('createusers.html', usuarios=usuarios)
+    
+    app.get('/usuarios/<username>')
+    def get_user(username):
+        user = app.db.usuarios.find_one({'name': username})
+        return render_template('user.html', user=user)
+
+
     return app
 
 if __name__ == '__main__':
