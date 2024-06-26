@@ -1,0 +1,25 @@
+# Ignorar archivos generados por Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Ignorar archivos de entorno virtual (si usas uno)
+.venv/
+venv/
+env/
+*.env
+
+# Ignorar archivos de registro y caché de Flask
+instance/
+*.log
+*.swp
+
+# Ignorar archivos de configuración local
+config.py
+
+# Ignorar archivos de dependencias (si no usas un administrador de paquetes)
+lib/
+lib64/
+dist/
+build/
+*.egg-info/
