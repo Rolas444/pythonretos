@@ -1,0 +1,9 @@
+{% macro lista_users(usuarios) %}
+
+    <ul>
+        {% for user in usuarios %}
+            <li>{{ user.name }}</li>
+        {% endfor %}
+    </ul>
+
+{% endmacro %}

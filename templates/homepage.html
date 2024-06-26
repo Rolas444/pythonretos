@@ -2,9 +2,17 @@
 <html>
 <head>
     <title>API Python</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/styles.css')}}">
 </head>
 <body>
     <h1>Esta es una API hecha en Python</h1>
-    <p>This is the homepage of the website.</p>
+    <nav>
+        <a href="{{url_for('homepage')}}">Home</a>
+        <a href="{{url_for('lista_usuarios')}}">Crear Usuario</a>
+    </nav>
+    <div>
+        {% block content %}
+        {% endblock %}
+    </div>
 </body>
 </html>

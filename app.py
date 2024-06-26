@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request
+from dotenv import load_dotenv
 import os
 import datetime
 
@@ -6,8 +7,14 @@ from pymongo import MongoClient
 
 def create_app():
     app = Flask(__name__)
+    load_dotenv()
+    stringconnection = os.getenv('MONGO_URI')
 
-    clientemongo = MongoClient(os.getenv('MONGO_URI'))
+    lista = [("1","uno"), ("2","dos"), ("3","tres")]
+
+    print(type(lista))
+
+    clientemongo = MongoClient(stringconnection)
 
     app.db = clientemongo.pythonapp
 

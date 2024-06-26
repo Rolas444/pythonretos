@@ -1,4 +1,23 @@
-<!DOCTYPE html>
+{% extends "homepage.html" %}
+
+{% from "macros.jinja2" import lista_users %}
+
+{% block content %}
+    <h1>Create Users</h1>
+    <form action="/usuarios" method="POST">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+        <br>
+        <input type="submit" value="Create User">
+    </form>
+    <div>
+        <h3>Lista usuarios desde macros con Jinja2</h3>
+        {{lista_users(usuarios)}}
+    </div>
+{% endblock %}
+
+
+<!-- <!DOCTYPE html>
 <html>
   <head>
     <title>Create Users</title>
@@ -12,11 +31,9 @@
       <input type="submit" value="Create User">
     </form>
     <div>
-        <ul>
-            {% for user in usuarios %}
-                <li>{{ user.name }}</li>
-            {% endfor %}
-        </ul>
+      <h3>Lista usuarios desde macros con Jinja2</h3>
+
+        {{lista_users(usuarios)}}
     </div>
   </body>
-</html>
+</html> -->
