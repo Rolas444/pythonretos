@@ -3,6 +3,7 @@ from dotenv import load_dotenv
 import os
 import datetime
 
+from routes.todo import todo
 from pymongo import MongoClient
 
 def create_app():
@@ -35,14 +36,16 @@ def create_app():
             # print(usuarios)
         return render_template('createusers.html', usuarios=usuarios)
     
-    app.get('/usuarios/<username>')
+    @app.get('/usuarios/<username>')
     def get_user(username):
         user = app.db.usuarios.find_one({'name': username})
-        return render_template('user.html', user=user)
+        print(user)
+        return render_template('detailuser.html', user=user)
 
+    app.register_blueprint(todo, url_prefix='/todo')
 
     return app
 
 if __name__ == '__main__':
     app = create_app()
-    app.run()
+    app.run(debug=True)
