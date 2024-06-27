@@ -2,7 +2,7 @@
 
     <ul>
         {% for user in usuarios %}
-            <li>{{ user.name }}</li>
+            <li>{{ user.name }} : <a href="{{ url_for('get_user', id=user._id)}}">Detalle</a></li>
         {% endfor %}
     </ul>
 

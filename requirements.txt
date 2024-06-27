@@ -1,5 +1,5 @@
 flask
 python-dotenv
 pymongo[srv]
-jwt
+Py_JWT
 gunicorn
