@@ -3,21 +3,24 @@ from dotenv import load_dotenv
 import os
 import datetime
 
+from database.db import get_db
 from routes.todo import todo
+from routes.authapi import authapi
 from pymongo import MongoClient
+from services.utils.security import token_auth
 
 def create_app():
     app = Flask(__name__)
-    load_dotenv()
-    stringconnection = os.getenv('MONGO_URI')
+    # load_dotenv()
+    # stringconnection = os.getenv('MONGO_URI')
 
     lista = [("1","uno"), ("2","dos"), ("3","tres")]
 
-    print(type(lista))
+    # print(type(lista))
 
-    clientemongo = MongoClient(stringconnection)
+    # clientemongo = MongoClient(stringconnection)
 
-    app.db = clientemongo.pythonapp
+    app.db = get_db()
 
     usuarios = [usuario for usuario in app.db.usuarios.find({})]
 
@@ -37,11 +40,13 @@ def create_app():
         return render_template('createusers.html', usuarios=usuarios)
     
     @app.get('/usuarios/<username>')
+    @token_auth
     def get_user(username):
         user = app.db.usuarios.find_one({'name': username})
         print(user)
         return render_template('detailuser.html', user=user)
-
+    
+    app.register_blueprint(authapi, url_prefix='/auth')
     app.register_blueprint(todo, url_prefix='/todo')
 
     return app
